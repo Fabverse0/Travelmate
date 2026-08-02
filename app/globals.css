@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ===== TRAVELMATE CORE DESIGN ===== */
+    --tm-ink-900: 220 33% 15%;
+    --tm-ink-700: 218 23% 27%;
+    --tm-sea-600: 199 65% 28%;
+    --tm-sea-100: 196 52% 91%;
+    --tm-stamp-600: 10 60% 45%;
+    --tm-stamp-100: 12 67% 92%;
+    --tm-parchment-200: 45 35% 82%;
+    --tm-parchment-50: 45 50% 94%;
+    --tm-sand-400: 42 28% 67%;
+    --tm-success-600: 147 32% 37%;
+
+    /* ===== UI/UX PRO MAX TRAVEL COLORS ===== */
+    --uupm-sky-blue: 199 90% 48%;
+    --uupm-sky-light: 200 100% 97%;
+    --uupm-accent-orange: 21 88% 48%;
+
+    /* ===== HYBRID DESIGN SYSTEM TOKENS ===== */
+    /* Light mode - TravelMate vintage base with UI/UX Pro Max accents */
+    --background: var(--tm-parchment-50);
+    --foreground: var(--tm-ink-900);
+    
+    --card: var(--tm-parchment-50);
+    --card-foreground: var(--tm-ink-900);
+    
+    --popover: var(--tm-parchment-50);
+    --popover-foreground: var(--tm-ink-900);
+    
+    --primary: var(--tm-sea-600);
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: var(--tm-sea-100);
+    --secondary-foreground: var(--tm-ink-900);
+    
+    --muted: var(--tm-parchment-200);
+    --muted-foreground: var(--tm-ink-700);
+    
+    --accent: var(--uupm-accent-orange); /* UI/UX Pro Max energy! */
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: var(--tm-parchment-200);
+    --input: var(--tm-parchment-200);
+    --ring: var(--tm-sea-600);
+    
+    --radius: 0.5rem;
+
+    /* ===== UI/UX PRO MAX ANIMATION TOKENS ===== */
+    --typing-dot-size: 8px;
+    --typing-animation-duration: 1.4s;
+    --streaming-text-speed: 0.05s;
+    --card-unfold-duration: 0.3s;
+    
+    /* ===== CHAT SPECIFIC TOKENS ===== */
+    --chat-bubble-ai-bg: var(--uupm-sky-light);
+    --chat-bubble-user-bg: var(--tm-ink-900);
+    --chat-bubble-user-text: var(--tm-parchment-50);
+    --input-height: 48px;
+    --message-gap: 16px;
+  }
+
+  .dark {
+    /* Dark mode - Ink background with muted accents */
+    --background: 220 33% 10%;
+    --foreground: var(--tm-parchment-50);
+    
+    --card: 220 33% 12%;
+    --card-foreground: var(--tm-parchment-50);
+    
+    --popover: 220 33% 12%;
+    --popover-foreground: var(--tm-parchment-50);
+    
+    --primary: 199 65% 35%; /* Brighter sea for dark mode */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 220 33% 18%;
+    --secondary-foreground: var(--tm-parchment-50);
+    
+    --muted: 220 33% 18%;
+    --muted-foreground: var(--tm-parchment-200);
+    
+    --accent: var(--uupm-accent-orange);
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 220 33% 18%;
+    --input: 220 33% 18%;
+    --ring: 199 65% 35%;
+    
+    --chat-bubble-ai-bg: 220 33% 18%;
+    --chat-bubble-user-bg: var(--tm-sea-600);
+    --chat-bubble-user-text: var(--tm-parchment-50);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2 {
+    @apply font-fraunces font-semibold tracking-tight;
+  }
+  h1 {
+    @apply text-3xl md:text-4xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-lg font-semibold font-space-grotesk;
+  }
+  .mono-text {
+    @apply font-ibm-plex-mono;
+  }
+}
+
+@layer utilities {
+  /* ===== UI/UX PRO MAX ANIMATIONS ===== */
+  .typing-indicator {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .typing-dot {
+    width: var(--typing-dot-size);
+    height: var(--typing-dot-size);
+    background-color: hsl(var(--foreground) / 0.4);
+    border-radius: 50%;
+    animation: typingDot var(--typing-animation-duration) infinite;
+  }
+  
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  .streaming-text {
+    overflow: hidden;
+    animation: streamText calc(var(--streaming-text-speed) * var(--text-length)) steps(var(--text-length)) 1;
+  }
+  
+  .card-unfold {
+    animation: cardUnfold var(--card-unfold-duration) ease-out;
+  }
+  
+  .fade-in-up {
+    animation: fadeInUp 0.2s ease-out;
+  }
+  
+  .pulse-subtle {
+    animation: pulseSubtle 2s infinite;
+  }
+  
+  /* ===== TRAVELMATE BOARDING PASS EFFECTS ===== */
+  .perforation-line {
+    position: relative;
+    height: 4px;
+    background: transparent;
+    overflow: hidden;
+  }
+  
+  .perforation-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-image: radial-gradient(circle, hsl(var(--tm-sand-400)) 2px, transparent 2.5px);
+    background-size: 10px 4px;
+    background-repeat: repeat-x;
+  }
+  
+  .boarding-pass-card {
+    @apply bg-card border border-border rounded-tm-md relative overflow-hidden;
+    box-shadow: 0 1px 3px hsl(var(--foreground) / 0.1);
+  }
+  
+  .boarding-pass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: hsl(var(--tm-sand-400));
+    opacity: 0.3;
+  }
+  
+  /* ===== CHAT BUBBLE STYLES ===== */
+  .chat-bubble-ai {
+    @apply bg-[hsl(var(--chat-bubble-ai-bg))] text-foreground rounded-tm-md rounded-tr-none max-w-[65%];
+    border-bottom-left-radius: 4px;
+  }
+  
+  .chat-bubble-user {
+    @apply bg-[hsl(var(--chat-bubble-user-bg))] text-[hsl(var(--chat-bubble-user-text))] rounded-tm-md rounded-tl-none max-w-[65%] ml-auto;
+    border-bottom-right-radius: 4px;
+  }
+  
+  /* ===== MAP VINTAGE FILTER ===== */
+  .vintage-map-filter {
+    filter: sepia(0.08) saturate(0.85);
+  }
+  
+  /* ===== CUSTOM SCROLLBAR ===== */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 20px;
+  }
+}
+
+@keyframes typingDot {
+  0%, 60%, 100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes streamText {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes cardUnfold {
+  from {
+    opacity: 0;
+    transform: scaleY(0.95) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
